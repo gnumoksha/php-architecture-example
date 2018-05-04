@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<ruleset name="gnumoksha" namespace="Flux\CS\Standard">
+    <description>Personal code style</description>
+
+    <arg name="basepath" value="."/>
+    <arg name="extensions" value="php"/>
+    <arg name="colors"/>
+    <arg name="parallel" value="80"/>
+
+    <!--
+    phpcs:disable
+    phpcs:enable
+
+    // phpcs:disable Generic.Commenting.Todo.Found
+    // phpcs:enable
+    -->
+
+    <!-- Show sniff codes in all reports and show progress of the run -->
+    <arg value="sp"/>
+
+    <autoload>./vendor/autoload.php</autoload>
+
+    <file>src/</file>
+
+    <exclude-pattern>tests/</exclude-pattern>
+
+    <!-- Include from relative path from PHPCS source location -->
+    <!--<config name="installed_paths" value="../../slevomat/coding-standard/SlevomatCodingStandard,../../object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics"/>-->
+    <!-- Include from path -->
+    <!--<rule ref="vendor/foo/bar/ruleset.xml" />-->
+
+    <!-- PSR2 -->
+    <rule ref="PSR2" />
+
+    <!-- Miscellaneous -->
+    <rule ref="Generic.Commenting.Todo.CommentFound">
+        <message>Please review this TODO comment: %s</message>
+        <severity>3</severity>
+    </rule>
+    <rule ref="Generic.PHP.ForbiddenFunctions">
+        <properties>
+            <property name="forbiddenFunctions" type="array" value="delete=>unset,echo=>print,create_function=>null" />
+        </properties>
+    </rule>
+
+    <!-- Slevomat Coding Standard -->
+    <rule ref="./vendor/slevomat/coding-standard/SlevomatCodingStandard" />
+    <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration" >
+        <properties>
+            <property name="usefulAnnotations" type="array" value="@throws,@see,@link,@dataProvider"/>
+            <property name="allAnnotationsAreUseful" type="array" value="@throws,@see,@link,@dataProvider"/>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly" />
+    <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
+        <properties>
+            <property name="newlinesCountBetweenOpenTagAndDeclare" value="2"/>
+            <property name="newlinesCountAfterDeclare" value="2"/>
+            <property name="spacesCountAroundEqualsSign" value="0"/>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.ControlStructures.AssignmentInCondition"/>
+    <rule ref="SlevomatCodingStandard.ControlStructures.DisallowEqualOperators"/>
+    <rule ref="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceOperator"/>
+    <rule ref="SlevomatCodingStandard.ControlStructures.EarlyExit"/>
+    <rule ref="SlevomatCodingStandard.Classes.UnusedPrivateElements"/>
+    <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses"/>
+    <rule ref="SlevomatCodingStandard.Namespaces.UseFromSameNamespace"/>
+    <rule ref="SlevomatCodingStandard.Exceptions.DeadCatch"/>
+    <!-- BEGIN EXPLANATION
+    https://twitter.com/gnumoksha/status/981510361798062080
+    https://twitter.com/CiaranMcNulty/status/981559375365066752
+    -->
+    <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma"/>
+    <rule ref="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming"/>
+    <rule ref="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming"/>
+    <rule ref="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming"/>
+    <!-- END EXPLANATION-->
+    <rule ref="SlevomatCodingStandard.ControlStructures.DisallowYodaComparison"/>
+    <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses"/>
+    <!--<rule ref="SlevomatCodingStandard.Namespaces.RequireOneNamespaceInFile"/>-->
+    <rule ref="SlevomatCodingStandard.TypeHints.LongTypeHints"/>
+    <!--<rule ref="SlevomatCodingStandard.PHP.ShortList"/>-->
+    <rule ref="SlevomatCodingStandard.PHP.TypeCast"/>
+    <!--<rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName"/>-->
+    <rule ref="SlevomatCodingStandard.Classes.ClassConstantVisibility"/>
+    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing">
+        <properties>
+            <property name="spacesCountBeforeColon" value="1"/>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue"/>
+    <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHintSpacing"/>
+    <rule ref="SlevomatCodingStandard.Namespaces.DisallowGroupUse"/>
+    <!--<rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants"/>-->
+    <rule ref="SlevomatCodingStandard.Namespaces.MultipleUsesPerLine"/>
+    <rule ref="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces">
+        <properties>
+            <property name="linesCountAfterOpeningBrace" value="0"/>
+            <property name="linesCountBeforeClosingBrace" value="0"/>
+        </properties>
+    </rule>
+    <!--<rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation"/>-->
+    <rule ref="SlevomatCodingStandard.Commenting.ForbiddenAnnotations">
+        <properties>
+            <property name="forbiddenAnnotations" type="array" value="@author,@created,@version,@package"/>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Commenting.ForbiddenComments">
+        <properties>
+            <property name="forbiddenCommentPatterns" type="array"
+                      value="'Created by PhpStorm','User:','Date:','Time:'"/>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Commenting.EmptyComment"/>
+    <rule ref="SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration"/>
+    <rule ref="SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment"/>
+
+    <!-- Object Calisthenics -->
+    <rule ref="./vendor/object-calisthenics/phpcs-calisthenics-rules/src/ObjectCalisthenics" />
+    <!-- Rule 1: Only X indentation level per function/method (with default values) -->
+    <rule ref="ObjectCalisthenics.Metrics.MaxNestingLevel" />
+
+    <!-- Rule 2: There is no "else" -->
+    <rule ref="ObjectCalisthenics.ControlStructures.NoElse"/>
+
+    <!-- Rule 6: Do not abbreviate (with default values) -->
+    <rule ref="ObjectCalisthenics.NamingConventions.ElementNameMinimalLength" />
+
+    <!-- Rule 7: Keep your classes small (with default values) -->
+    <rule ref="ObjectCalisthenics.Files.ClassTraitAndInterfaceLength">
+        <properties>
+            <property name="maxLength" value="200"/>
+        </properties>
+    </rule>
+    <rule ref="ObjectCalisthenics.Files.FunctionLength">
+        <properties>
+            <property name="maxLength" value="30"/>
+        </properties>
+    </rule>
+    <rule ref="ObjectCalisthenics.Metrics.PropertyPerClassLimit">
+        <properties>
+            <property name="maxCount" value="10"/>
+        </properties>
+    </rule>
+    <rule ref="ObjectCalisthenics.Metrics.MethodPerClassLimit">
+        <properties>
+            <property name="maxCount" value="15"/>
+        </properties>
+    </rule>
+
+    <!-- Rule 9: Do not Use Getters and Setters -->
+    <!-- #TODO ignore private -->
+    <!--<rule ref="ObjectCalisthenics.Classes.ForbiddenPublicProperty"/>-->
+    <!--<rule ref="ObjectCalisthenics.NamingConventions.NoSetter"/>-->
+</ruleset>
+
+<!-- #TODO see (very opinative) https://github.com/consistence/coding-standard -->
+
+<!-- #TODO https://github.com/wimg/PHPCompatibility -->
+<!-- Run against the PHPCompatibility ruleset -->
+<!--<rule ref="PHPCompatibility"/>-->
+<!-- Check for cross-version support for PHP 5.6 and higher. -->
+<!-- <config name="testVersion" value="5.6-"/> -->
+
+<!-- #TODO https://github.com/FloeDesignTechnologies/phpcs-security-audit -->
+<!--
+References:
+* https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml
+* https://stackoverflow.com/questions/16427207/php-codesniffer-rules-documentation
+* https://github.com/object-calisthenics/phpcs-calisthenics-rules/blob/master/src/ObjectCalisthenics/ruleset.xml
+-->
